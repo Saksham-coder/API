@@ -4,13 +4,26 @@ function locate(){
         return response.json();
     })
     .then(data => {
-        console.log(data)
-        console.log(data.ip)
-        document.querySelector("p").innerText = data.ip;
+        a = data.city
+        document.querySelector(".city").innerText = data.city;
+        document.querySelector(".ip").innerText = data.ip;
+    }).then( weather => {
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${a}&appid=23fc2124709b1501ef16fd1cd66d0fa7`)
+      .then(res =>{
+        return res.json();
+      })
+      .then( data =>{
+        description =  data.weather[0].description;
+        icon = data.weather[0].icon;
+        document.querySelector(".description").innerText = description
+        imageURL = "http://openweathermap.org/img/wn/"+icon+"@2x.png"
+        document.querySelector(".temp1").innerText = `${Math.round(data.main.temp-273.15)}`;
+        document.querySelector(".imageput").src = imageURL;
+      })
     }) 
   }
+  
 var l =  locate();
-
     x=navigator.geolocation;
     x.getCurrentPosition(success,failure);
     function success(position){

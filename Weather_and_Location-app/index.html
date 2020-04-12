@@ -1,23 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Map</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <div class="heading">
-      <span>YOUR IP Address is:</span>
-      <p>IP</p>
-    </div>
-    <div id="map"></div>
-    <div class="weather">
-    </div>
-    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgFtyEDrLu33cA7B5NeA0-nh7YiA5Gg2E"></script>
-    <script src="app.js">
-    </script >
-  </body>
+	<head>
+		<title>Simple Map</title>
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<meta name="viewport" content="initial-scale=1.0" />
+		<meta charset="utf-8" />
+		
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div class="textpos">
+			<h1 class="text">WEATHER REPORT</h1>
+		</div>
+		<div class="main">
+			<div>
+				<div class="first">
+					<div>
+						<h1>CITY :</h1>
+					</div>
+					<div class="city">
+						<p></p>
+					</div>
+				</div>
+				<div class="first">
+					<div class="image firsta">
+						<img class="imageput" src="" />
+					</div>
+					<div class="firstb">
+						<p class="description"></p>
+					</div>
+				</div>
+				
+
+				<div class="weather1">
+					<i class="fas fa-thermometer-quarter fa-2x"></i>
+					<span class="temp1">Loading</span><span>C</span>
+				</div>
+			</div>
+			<div id="map"></div>
+			<div class="weather"></div>
+		</div>
+		<!-- IF YOU WANT TO SEE IP ADDRESS FROM WHERE I AM GATHERING INFO --> 
+			<div class="ip1">
+				
+				<span>YOUR IP Address is:</span>
+				<p class="ip">IP</p>
+			</div>
+		
+		
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgFtyEDrLu33cA7B5NeA0-nh7YiA5Gg2E"></script>
+		<script src="app.js"></script>
+	</body>
 </html>
