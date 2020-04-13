@@ -1,6 +1,7 @@
 body{
     background-color: aliceblue;
-
+    margin: 0;
+    padding: 0;
 }
 .question{
     width: auto;
@@ -9,12 +10,28 @@ body{
 
 .answerzone{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.one, .second, .third, .fourth {
+    margin-top: 8px;
+    cursor: pointer;
 }
 
 .a{
-    width: auto;
+    width: 200px;
     background-color: burlywood;
-    margin: auto;
+    margin: 10px 0px;
+    height:  60px;
+    font-size: 1.1rem;
+    text-align: center;
+    display: table-cell;
+  vertical-align: middle;
+}
+
+.a span{
+    margin-top: 10px;
 }
 
 .lost{
@@ -28,4 +45,53 @@ body{
 
 .notlost{
     opacity: 1;
+
 }
+
+
+button{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: none;
+    font-size: 2.1rem;
+    border-radius: 10px;
+    background-color: #e8ffe8;
+    color: #fc5185;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+.main{
+    display: flex;
+    align-items: center;
+}
+
+.ques{
+    font-size: 2.2rem;
+}
+
+.question{
+    display: flex;
+    width: 80%;
+    height: 100px;
+    text-align: center;
+    font-size: 1.7rem;
+
+}
+
+.result{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 2rem;
+    font-family: cursive;
+    text-align: center;
+}
+

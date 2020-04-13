@@ -1,22 +1,21 @@
 function start(){
 var right = 0 
-console.log(document.querySelector("button").parentElement)
 document.querySelector("button").classList.add("lost") 
 var length = 0
 function fetching(){
-        console.log(length)
+        // console.log(length)
         fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple")
         .then(response => {
         return response.json();
         })
         .then(data =>{
-        console.log(data.results)
+        // console.log(data.results)
         var i =0
-        if (length <2){
+        if (length <5){
         play(data.results, i =0);
         }else{
         document.querySelector(".puzzle").classList.add("lost")
-        console.log("finished")
+        // console.log("finished")
         document.querySelector(".announce").innerText = right
         document.querySelector(".result").classList.remove("lost")
         document.querySelector(".result").classList.add("notlost")
@@ -26,7 +25,7 @@ function fetching(){
 
 function play(arr,x){
     array = arr[x]
-    console.log(array)
+    // console.log(array)
     document.querySelector(".question").innerText = array.question;
     document.querySelector(".answer").innerText = array.correct_answer; 
     a=Math.floor((Math.random())*4)
