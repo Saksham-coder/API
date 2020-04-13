@@ -1,0 +1,31 @@
+body{
+    background-color: aliceblue;
+
+}
+.question{
+    width: auto;
+    background-color: antiquewhite;
+}
+
+.answerzone{
+    display: flex;
+}
+
+.a{
+    width: auto;
+    background-color: burlywood;
+    margin: auto;
+}
+
+.lost{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.answer{
+    width: 100px;
+}
+
+.notlost{
+    opacity: 1;
+}
