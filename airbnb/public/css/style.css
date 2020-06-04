@@ -1,0 +1,37 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+/* HEADER */
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0px 30px;
+}
+.logotop {
+	width: 60px;
+	height: 60px;
+}
+
+header a {
+	text-decoration: none;
+}
+
+.sign {
+	font-size: large;
+	margin: 5px;
+	padding: 5px;
+	color: black;
+}
+
+.sign1 {
+	font-size: 1.2rem;
+	margin: 5px;
+	border: 1px solid grey;
+	border-radius: 18px;
+	padding: 9px;
+	color: black;
+}

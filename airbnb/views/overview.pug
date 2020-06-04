@@ -1,0 +1,23 @@
+extends base
+
+block content
+    -console.log(data)
+    p= data
+    form(action='/overview' method='GET')
+        label(for='name') 
+        input#name(type='text' name='name' placeholder='Search By Hotel name')
+        label(for='location')
+        input#location(type='text' name='location' placeholder='Enter Location')
+        label(for='price[gte]')
+        input#pricegreat(type='text' name='price[gte]' placeholder='Price Starting from')
+        label(for='price[lte]')
+        input#priceless(type='text' name='price[lte]' placeholder='Price Ending ')
+        label(for='rooms')
+        input#room(type='text' name='rooms' placeholder='Room Required')
+        label(for='startdate')
+        input#room(type='date' name='startdate' placeholder='Start Date')
+        label(for='enddate')
+        input#room(type='date' name='enddate' placeholder='End Date')
+        button.btn.btn-primary(type='submit') Search
+    each hotel in data
+        p= hotel.location

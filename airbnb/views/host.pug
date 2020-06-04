@@ -1,0 +1,27 @@
+extends base
+
+block content
+    main.main
+        .host-form
+            h2.heading-secondary.ma-bt-lg We need Details
+            form.hostform
+                .form__group
+                    label.form__label(for='name') name address
+                    input#name.form__input(type='name', placeholder='Enter your hotel or host name', required)
+                .form__group
+                    label.form__label(for='location') location
+                    input#location.form__input(type='location', placeholder='location', required)
+                .form__group
+                    label.form__label(for='description') description
+                    input#description.form__input(type='description', placeholder='Provide Description', required)
+                .form__group
+                    label.form__label(for='summary') summary
+                    input#summary.form__input(type='summary', placeholder='summary', required)
+                .form__group
+                    label.form__label(for='rooms') rooms
+                    input#rooms.form__input(type='rooms', placeholder='rooms', required)
+                .form__group
+                    label.form__label(for='price') price
+                    input#price.form__input(type='price', placeholder='price', required)
+                .form__group
+                    button.btn.btn--green Host 
