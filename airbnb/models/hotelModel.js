@@ -48,6 +48,15 @@ const hotelSchema = new mongoose.Schema(
 			default: Date.now(),
 			select: false
 		},
+		livelocation: {
+			// GeoJSON
+			type: {
+				type: String,
+				default: 'Point',
+				enum: [ 'Point' ]
+			},
+			coordinates: [ Number ]
+		},
 		host: [
 			{
 				type: mongoose.Schema.ObjectId,
@@ -86,6 +95,8 @@ hotelSchema.pre('save', function(next) {
 // 	});
 // 	next();
 // });
+
+hotelSchema.index({ location: '2dsphere' });
 
 const Hotel = mongoose.model('Hotel', hotelSchema);
 

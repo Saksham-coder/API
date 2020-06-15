@@ -1,0 +1,48 @@
+extends base
+
+block content
+    .personal
+        .personal-top
+            span
+                a(href="/me") Account
+                span    > 
+                span Personal Information
+            h2 Personal Information
+        .personal-main
+            .personal-main-heading
+                h4 Update Infromation
+            .personal-main_update
+                form.personalform
+                    .form__group.personalformlabel
+                        label(for='username') Legal Name
+                        br
+                        input#username(type='text', value=`${user.username}`, placeholder='Provide  Username'  )
+                    .form__group.personalformlabel
+                        label(for='gender') Choose a Gender:
+                        select#gender(name='gender' form='genderform')
+                            option(value='male') Male
+                            option(value='female') Female
+                            option(value='other') Other
+                    .form__group.personalformlabel
+                        label(for='dob') Date of birth
+                        br
+                        input#dob(type='date',value=`${user.dob}`, placeholder='Provide  Date Of Birth' required)
+                    .form__group.personalformlabel
+                        label(for='email') Email address
+                        br
+                        input#email(type='text', value=`${user.email}` required)
+                    .form__group.personalformlabel
+                        label(for='phone_number') Phone Number
+                        br
+                        input#phone_number(type='text',value=`${user.phone_number}`, placeholder='Provide Phone Number' required)
+                    .form__group.personalformlabel
+                        label(for='address') Address
+                        br
+                        input#address(type='text', value=`${user.address}`, placeholder='Provide Address' required) 
+                    .form__group.personalformlabel
+                        img.form-image(src=`/img/users/${user.photo}` alt='User photo')
+                        label(for='photo') Choose new photo 
+                        input.hide-input(type='file', accept='image/*', id='photo', name='photo', required)  
+                                            
+                    .form__group.personalformlabel
+                        button Update 

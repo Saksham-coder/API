@@ -33,3 +33,7 @@ document.querySelector('.signform').addEventListener('submit', (e) => {
 	const confirmPassword = document.getElementById('confirmPassword').value;
 	signup(email, password, username, confirmPassword);
 });
+
+document.querySelector('.carousel').addEventListener('carousel', ()=>{
+	interval:200
+})

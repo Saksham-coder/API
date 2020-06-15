@@ -1,4 +1,4 @@
-const deleteKey = require("object-delete-key");
+const deleteKey = require('object-delete-key');
 const user = require('../models/userModel');
 const Hotel = require('../models/hotelModel');
 
@@ -10,6 +10,14 @@ exports.login = (req, res) => {
 	res.status(200).render('login');
 };
 
+exports.forgetPassword = (req, res) => {
+	res.status(200).render('login_forgetPassword');
+};
+
+exports.getpopupform = (req, res) => {
+	res.status(200).render('login_popforgetPassword');
+};
+
 exports.signup = (req, res) => {
 	res.status(200).render('signup');
 };
@@ -19,19 +27,19 @@ exports.overview = async (req, res) => {
 
 	const queryObj = { ...req.query };
 	console.log(queryObj);
-	for (var i in queryObj){
-		if(typeof(queryObj[i]) === 'object'){
-		  for (var j in queryObj[i]){
-			if (queryObj[i][j] === ''){
-			  delete queryObj[i][j]
+	for (var i in queryObj) {
+		if (typeof queryObj[i] === 'object') {
+			for (var j in queryObj[i]) {
+				if (queryObj[i][j] === '') {
+					delete queryObj[i][j];
+				}
 			}
-		  }
 		}
 	}
 	for (var i in queryObj) {
 		if (queryObj[i] === '' || Object.keys(queryObj[i]).length === 0) {
 			delete queryObj[i];
-			}
+		}
 	}
 
 	const excludedFields = [ 'page', 'sort', 'limit', 'fields', 'startdate', 'enddate' ];
@@ -86,6 +94,30 @@ exports.overview = async (req, res) => {
 	});
 };
 
-exports.postHost = (req, res) =>{
+exports.postHost = (req, res) => {
 	res.status(200).render('host');
-}
+};
+
+exports.getAccount = async (req, res) => {
+	console.log('hi froom rendering');
+	console.log(req.user);
+	res.status(200).render('account', {
+		title: 'Your Account'
+	});
+};
+
+exports.getSecurity = async (req, res) => {
+	console.log('hi froom security view controller');
+	console.log(req.user);
+	res.status(200).render('security', {
+		title: 'Security'
+	});
+};
+
+exports.getPersonal = async (req, res) => {
+	console.log('hi froom Personal view controller');
+	console.log(req.user);
+	res.status(200).render('personal', {
+		title: 'Personal Information'
+	});
+};

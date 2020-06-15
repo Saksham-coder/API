@@ -1,0 +1,30 @@
+extends base
+
+block content
+    .security
+        .security-top
+            span
+                a(href="/me") Account
+                span    > 
+                span Login & Security
+            h2 Login & Security
+            
+        .security-main
+            .security-main-heading
+                h4 Login Password Change
+            .security-main_update
+                form.securityform
+                    .form__group.securityformlabel
+                        label(for='passwordCurrent') Current Password
+                        br
+                        input#passwordCurrent(type='password'  required)
+                    .form__group.securityformlabel
+                        label(for='password') New Password
+                        br
+                        input#password(type='password' required)
+                    .form__group.securityformlabel
+                        label(for='confirmPassword') Confirm Password
+                        br
+                        input#confirmPassword(type='password' required)         
+                    .form__group.securityformlabel
+                        button Update Password

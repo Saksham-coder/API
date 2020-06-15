@@ -1,0 +1,37 @@
+extends base 
+
+block content 
+    .account
+        .account-main 
+            h2 Account
+            span 
+                span= user.username
+                | 
+                span ,
+                | 
+                span= user.email
+                | 
+                span . 
+                | 
+                a(href="#") Go to profile
+        .account-card
+            .account-card__first.cardcover
+                a(href="/me/personal")
+                    .account-card__first.a
+                        img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXx3dHQqME_0Zeh16fZUMuLqN9rgPQazPEzE_xEEQ3Von-Jj4c&usqp=CAU", alt="user svg")
+                    .account-card__first.b
+                        h4 Peronal Info >
+                    .account-card__first.c
+                        span Provide personal details and how we can reach you
+            .account-card__first.cardcover
+                a(href="/me/login-security")    
+                    .account-card__first.a
+                        img(src="data:image/png;base64,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", alt="security")
+                    .account-card__first.b
+                        h4 Login and Security >
+                    .account-card__first.c
+                        span Update your password and secure your account
+        .account-delete
+            span Need to deactivate your account
+            br
+            a(href="#") Take care of that now
