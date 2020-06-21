@@ -7,10 +7,15 @@ const hotelSchema = new mongoose.Schema(
 			type: String,
 			required: [ true, 'A Hotel must have name' ]
 		},
+		hotel_type: {
+			type: String,
+			default: 'Private Room'
+		},
 		location: {
 			type: String,
 			required: [ true, 'A Hotel must have Location' ]
 		},
+
 		summary: {
 			type: String,
 			required: [ true, 'A Hotel must have summary' ]
@@ -18,6 +23,10 @@ const hotelSchema = new mongoose.Schema(
 		description: {
 			type: String,
 			required: [ true, 'A Hotel must have description' ]
+		},
+		sleeping_arrangements: {
+			type: String,
+			default: '1 king Bed'
 		},
 		facility: {
 			type: String
@@ -48,6 +57,16 @@ const hotelSchema = new mongoose.Schema(
 			default: Date.now(),
 			select: false
 		},
+		ratingsAverage: {
+			type: String,
+			default: 4.5,
+			min: [ 1, 'A Hotel must have rating above 1.0' ],
+			max: [ 1, 'A Hotel must have rating below 5.0' ]
+		},
+		ratingsQuantity: {
+			type: Number,
+			default: 0
+		},
 		livelocation: {
 			// GeoJSON
 			type: {
@@ -55,20 +74,30 @@ const hotelSchema = new mongoose.Schema(
 				default: 'Point',
 				enum: [ 'Point' ]
 			},
-			coordinates: [ Number ]
+			coordinates: [ Number ],
+			address: String,
+			description: String
 		},
+		// "startLocation": {
+		// 	"description": "Miami, USA",
+		// 	"type": "Point",
+		// 	"coordinates": [-80.185942, 25.774772],
+		// 	"address": "301 Biscayne Blvd, Miami, FL 33132, USA"
+		//   },
+		//   "ratingsAverage": 4.8,
+		//   "ratingsQuantity": 6,
 		host: [
 			{
 				type: mongoose.Schema.ObjectId,
 				ref: 'user'
 			}
-		],
-		reviews: [
-			{
-				type: mongoose.Schema.ObjectId,
-				ref: 'Review'
-			}
 		]
+		// reviews: [
+		// 	{
+		// 		type: mongoose.Schema.ObjectId,
+		// 		ref: 'Review'
+		// 	}
+		// ]
 	},
 	{
 		toJSON: { virtuals: true },
@@ -76,11 +105,25 @@ const hotelSchema = new mongoose.Schema(
 	}
 );
 
-// hotelSchema.virtual('reviews', {
-// 	ref: 'Review',
-// 	foreignField: 'hotel',
-// 	localField: '_id'
-// });
+hotelSchema.index({ price: 1, ratingsAverage: -1 });
+hotelSchema.index({ slug: 1 });
+
+// Virtual populate
+hotelSchema.virtual('reviews', {
+	ref: 'Review',
+	foreignField: 'hotel',
+	localField: '_id'
+});
+
+hotelSchema.pre(/^find/, function(next) {
+	// this.populate('hotel');
+	// this.populate('user');
+	this.populate({
+		path: 'host',
+		select: 'username photo'
+	});
+	next();
+});
 
 hotelSchema.pre('save', function(next) {
 	console.log(this);

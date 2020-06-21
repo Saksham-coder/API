@@ -1,5 +1,7 @@
 const Hotel = require('../models/hotelModel');
 const jwt = require('jsonwebtoken');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 
 exports.aliasTopHotel = (req, res, next) => {
 	req.query.limit = '5';
@@ -8,94 +10,87 @@ exports.aliasTopHotel = (req, res, next) => {
 	next();
 };
 
-exports.getAllHotel = async (req, res) => {
-	try {
-		console.log(req.query);
+exports.getAllHotel = catchAsync(async (req, res) => {
+	console.log(req.query);
 
-		// BUILD QUERY
-		// 1. FILTERING
-		const queryObj = { ...req.query };
-		const excludedFields = [ 'page', 'sort', 'limit', 'fields' ];
-		excludedFields.forEach((el) => delete queryObj[el]);
+	// BUILD QUERY
+	// 1. FILTERING
+	const queryObj = { ...req.query };
+	const excludedFields = [ 'page', 'sort', 'limit', 'fields' ];
+	excludedFields.forEach((el) => delete queryObj[el]);
 
-		// console.log(req.query, queryObj);
-		// 1.B ADVANCED FILTERING
-		let queryStr = JSON.stringify(queryObj);
-		queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+	// console.log(req.query, queryObj);
+	// 1.B ADVANCED FILTERING
+	let queryStr = JSON.stringify(queryObj);
+	queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
-		// console.log(queryStr)
-		// console.log(JSON.parse(queryStr))
+	// console.log(queryStr)
+	// console.log(JSON.parse(queryStr))
 
-		let query = Hotel.find(JSON.parse(queryStr));
+	let query = Hotel.find(JSON.parse(queryStr));
 
-		// 2.SORTING
-		if (req.query.sort) {
-			const sortBy = req.query.sort.split(',').join(' ');
-			query = query.sort(sortBy);
-		} else {
-			query = query.sort('-createdAt');
-		}
+	console.log('total length of your query ' + query.length);
 
-		// 3.FIELD LIMITING
-		if (req.query.fields) {
-			const fields = req.query.fields.split(',').join(' ');
-			query = query.select(fields);
-		} else {
-			query = query.select('-__v');
-		}
-
-		// 4.PAGINATION
-		const page = req.query.page * 1 || 1;
-		const limit = req.query.limit * 1 || 10;
-		const skip = (page - 1) * limit;
-
-		query = query.skip(skip).limit(limit);
-
-		if (req.query.page) {
-			const numHotels = await Hotel.countDocuments();
-			if (skip >= numHotels) throw new Error('This page does not exist');
-		}
-
-		// { price: { gte: '300' }, sort: '-1' } { price: { $gte: '300' } }
-		// { price: { gte: '300' }, sort: '-1' } { price: { gte: '300' } }
-
-		// 2. EXECUTE QUERY
-		const hotels = await query;
-
-		res.status(201).json({
-			status: 'success',
-			results: hotels.length,
-			data: {
-				data: hotels
-			}
-		});
-	} catch (err) {
-		res.status(400).json({
-			status: 'fail',
-			message: err
-		});
+	// 2.SORTING
+	if (req.query.sort) {
+		const sortBy = req.query.sort.split(',').join(' ');
+		query = query.sort(sortBy);
+	} else {
+		query = query.sort('-createdAt');
 	}
-};
 
-exports.getHotel = async (req, res) => {
-	try {
-		// console.log(req.params)
-		const oneHotel = await Hotel.findById(req.params.id);
-		// const oneHotel = await Hotel.findOne({name: req.params.name})
-
-		res.status(200).json({
-			status: 'success',
-			data: {
-				data: oneHotel
-			}
-		});
-	} catch (err) {
-		res.status(400).json({
-			status: 'fail',
-			message: err
-		});
+	// 3.FIELD LIMITING
+	if (req.query.fields) {
+		const fields = req.query.fields.split(',').join(' ');
+		query = query.select(fields);
+	} else {
+		query = query.select('-__v');
 	}
-};
+
+	// 4.PAGINATION
+	const page = req.query.page * 1 || 1;
+	const limit = req.query.limit * 1 || 10;
+	const skip = (page - 1) * limit;
+
+	query = query.skip(skip).limit(limit);
+
+	if (req.query.page) {
+		const numHotels = await Hotel.countDocuments();
+		if (skip >= numHotels) throw new Error('This page does not exist');
+	}
+
+	// { price: { gte: '300' }, sort: '-1' } { price: { $gte: '300' } }
+	// { price: { gte: '300' }, sort: '-1' } { price: { gte: '300' } }
+
+	// 2. EXECUTE QUERY
+	// const hotels = await query.explain();
+	const hotels = await query;
+	res.status(201).json({
+		status: 'success',
+		results: hotels.length,
+		data: {
+			data: hotels
+		}
+	});
+});
+
+exports.getHotel = catchAsync(async (req, res) => {
+	// console.log(req.params)
+	const oneHotel = await Hotel.findById(req.params.id).populate('reviews');
+	// const oneHotel = await Hotel.findOne({name: req.params.name})
+	console.log('Fro one hotel conroller ');
+	console.log('searching one hotel');
+	if (!oneHotel) {
+		return next(new AppError('There is no hotel with that name', 404));
+	}
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			data: oneHotel
+		}
+	});
+});
 
 exports.updateHotel = async (req, res) => {
 	try {

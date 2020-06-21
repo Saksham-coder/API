@@ -11,7 +11,7 @@ exports.signup = catchAsync(async (req, res) => {
 	const newUser = await user.create(req.body);
 
 	const url = `${req.protocol}://${req.get('host')}/me/personal`;
-	console.log(url)
+	console.log(url);
 	await new Email(newUser, url).sendWelcome();
 
 	id = newUser._id;
@@ -36,12 +36,12 @@ exports.login = catchAsync(async (req, res) => {
 	const password = req.body.password;
 	// console.log(req.body)
 	// console.log(username, password)
-	if (!email || !password) throw new err('Please provide username or password');
+	if (!email || !password) throw new err('Please provide username or password', 404);
 	const singleUser = await user.findOne({ email: email });
 	// console.log(singleUser)
 	const correct = await bcrypt.compare(password, singleUser.password);
 
-	if (!singleUser || !correct) throw new err('Please provide valid username or password');
+	if (!singleUser || !correct) throw new err('Please provide valid username or password', 404);
 
 	id = singleUser._id;
 	const token = jwt.sign({ id }, 'abcdefebgudjnwksjcscjscsdjkcnjdc');
@@ -178,13 +178,12 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 	const resetToken = User.createPasswordResetToken();
 	await User.save({ validateBeforeSave: false });
 	// 3) Send it to User's email
-	
 
 	try {
 		const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;
-	const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
+		const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
 
-	await new Email(User, resetURL).sendPasswordReset()
+		await new Email(User, resetURL).sendPasswordReset();
 		// await sendEmail({
 		// 	email: User.email,
 		// 	subject: 'Your password reset token (valid for 10 min)',

@@ -9,25 +9,59 @@ html
       link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
       link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
       title Air | #{title}
+      script(src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js')
+      link(href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet')
   
   body
     // HEADER
     include _header
         
     // CONTENT
+    .base_search
+
     block content
-      h1 This is a placeholder heading
-      
+      .base_online_main
+        .base_online_main_details
+          .base_online_main_details_left
+            h2 Online experiences
+            span Meet people all over the world while trying something new. Join live, interactive video sessions led by one-of-a-kind hosts – all without leaving home.
+        .base_online_main_image
+          .base_online_main_images_left
+            a(href="#")
+              img(src="./img/experiences/plant_doctor.jpeg", alt="")
+              span Learn to propogate with Baltimore's "Plant Doctor"
+          .base_online_main_images_right
+            a.base_online_main_images_right_a(href="#")
+              img.base_online_main_images_right_img(src="./img/experiences/meditate.jpeg", alt="")
+              span
+                span.base_online_main_images_right_span Stretch.Breathe.Relax
+                br
+                span.base_online_main_images_right_span Yoga class with friends 
+            a.base_online_main_images_right_a(href="#")
+              img.base_online_main_images_right_img(src="./img/experiences/penguin.jpeg", alt="")
+              span.base_online_main_images_right_span Support African penguins  
+        .base_online_main_frontline
+          .base_online_main_frontline_left
+            h2 Host a hero: help to house frontline responders around the world
+            a(href="#") Get involved
+          .base_online_main_frontline_right
+            p With frontline stays, Airbnb is partnering with our hosts to connect 100,000 healthcare providers, relief workers, and first responders with clean places to stay that allow them to be close to their patients – and safely distanced from their own families.
+
     //- // FOOTER
     //- include _footer
     
     script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
     //- script(src='/js/mapbox.js')
-    script(src='/js/login.js')
-    script(src='/js/signup.js')
+    //- script(src='/js/login.js')
+    //- script(src='/js/signup.js')
+    script(src='/js/bundle.js')
     script(src='/js/logout.js')
     script(src='/js/host.js')
     script(src='/js/updatepassword.js')
     script(src='/js/updatepersonal.js')
-    //- script(src='/js/forgetPassword.js')
+    script(src='/js/mapbox2.js')
+    script(src='/js/length.js')
+    script(src='/js/index.js')
+    script(src='/js/alert.js')
+    script(src='/js/forgetPassword.js')
     //- script(src='/js/bundle.js')

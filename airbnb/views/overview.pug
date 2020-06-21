@@ -1,8 +1,6 @@
 extends base
 
 block content
-    -console.log(data)
-    p= data
     form(action='/overview' method='GET')
         label(for='name') 
         input#name(type='text' name='name' placeholder='Search By Hotel name')
@@ -19,5 +17,66 @@ block content
         label(for='enddate')
         input#room(type='date' name='enddate' placeholder='End Date')
         button.btn.btn-primary(type='submit') Search
-    each hotel in data
-        p= hotel.location
+    .overview_main
+        .overview_mainleft
+            .overview_staysplace
+                    p= `${length} stays`
+                    h2
+                        if location === undefined
+                            h2 Stays in India
+                        else
+                            - const locations = `Stays in ${location}`
+                            h2= locations
+            .overview_staysplace_clock_guidelines
+                img(src="./img/clock.png", alt="")      
+                p Check travel restrictions before booking.
+                span  Please review and follow government travel guidelines
+            each hotel in data
+                .overview
+                    a(href=`/overview/${hotel._id}`)
+                        .overview_card
+                            .overview_cardleft
+                                img(src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", alt="")
+                            .overview_cardright
+                                .overview_cardrightfirst
+                                    span.rightfirst= hotel.hotel_type
+                                    span    
+                                        img.rightfirstimage(src="data:image/png;base64,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", alt="")
+                                        span= hotel.ratingsAverage
+                                        | 
+                                        span (
+                                        span= hotel.ratingsQuantity
+                                        span )
+                                .overview_cardrightsecond
+                                    h3= hotel.description
+                                    span Air Conditioning , Kitchen , Wifi
+                                .overview_cardrightthird
+                                    span 
+                                        span.boldrupee ₹
+                                        span.boldrupee= hotel.price
+                                        span.boldrupee /
+                                        span night
+            .overview_paginate
+                        form.overview_paginate_form(action='/overview' method='GET')
+                            label(for='page') Page Number
+                            input#page(type='text' name='page' value=`${page}`)
+                            button(type='submit') Search
+                        if page*10 < length
+                            span= `${page-1}1 - ${page*10} of ${length} places to stay`
+                        else
+                            span= `${page-1}1 - ${page*10-(page*10-length)} of ${length} places to stay`
+                        p Enter dates to see full pricing. Additional fees apply. Taxes may be added.
+        .overview_mainright
+            .fixingmap
+                - const hotels = []
+                each hotel in data
+                    //- -console.log(hotel)
+                    - var taking_hotels = hotel.livelocation
+                    -console.log(taking_hotels)
+                    
+                    - hotels.push(taking_hotels)
+                    
+                -console.log("all hotels location")
+                -console.log(hotels)
+                #mainmap(data-locations=`${JSON.stringify(hotels)}`)
+            

@@ -4,12 +4,15 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.10.1",
     "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "cookie-parser": "^1.4.5",
@@ -24,6 +27,10 @@
     "object-delete-key": "^1.9.29",
     "pug": "^3.0.0",
     "slugify": "^1.4.0",
+    "stripe": "^8.64.0",
     "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.9"
   }
 }

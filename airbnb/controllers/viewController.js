@@ -1,6 +1,8 @@
 const deleteKey = require('object-delete-key');
 const user = require('../models/userModel');
 const Hotel = require('../models/hotelModel');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 
 exports.getbase = (req, res) => {
 	res.status(200).render('base');
@@ -76,6 +78,9 @@ exports.overview = async (req, res) => {
 	const limit = req.query.limit * 1 || 10;
 	const skip = (page - 1) * limit;
 
+	console.log('total length of your query ' + (await query).length);
+	const length = (await query).length;
+
 	query = query.skip(skip).limit(limit);
 
 	if (req.query.page) {
@@ -87,12 +92,31 @@ exports.overview = async (req, res) => {
 	// { price: { gte: '300' }, sort: '-1' } { price: { gte: '300' } }
 
 	// 2. EXECUTE QUERY
-	const hotels = await query;
+	const hotels = await query.populate('reviews');
+	const location = req.query.location;
 
 	res.status(200).render('overview', {
-		data: hotels
+		data: hotels,
+		location,
+		page,
+		length
 	});
 };
+
+exports.getHotel = catchAsync(async (req, res) => {
+	// console.log(req.params)
+	const oneHotel = await Hotel.findById(req.params.id).populate('reviews');
+	// const oneHotel = await Hotel.findOne({name: req.params.name})
+	console.log(oneHotel);
+	console.log('Hi from one controller and checking error page');
+	if (!oneHotel) {
+		return next(new AppError('There is no Hotel with that name', 404));
+	}
+
+	res.render('singleOverview', {
+		data: oneHotel
+	});
+});
 
 exports.postHost = (req, res) => {
 	res.status(200).render('host');

@@ -1,0 +1,128 @@
+doctype html
+html
+  head
+    block head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+        link(rel='stylesheet' href='/css/style.css')
+        link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+        link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+        title Air | #{title}
+        script(src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js')
+        link(href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet')
+        script(src="https://js.stripe.com/v3/")
+
+      
+  
+  body
+    // HEADER
+    include _header
+        
+    .singleOverview
+        .singleOverview_topdetails
+            h2= data.summary
+            span    
+                - const desc = `❤️ ${data.ratingsAverage}(${data.ratingsQuantity})  ${data.location} `
+                span= desc
+        .singleOverview_images
+            .singleOverview_images_left
+                img(src="https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", alt="")
+            .singleOverview_images_right
+                img(src="https://images.pexels.com/photos/53577/hotel-architectural-tourism-travel-53577.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", alt="")
+                img(src="https://images.pexels.com/photos/860922/pexels-photo-860922.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", alt="")
+                img(src="https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", alt="")
+                img(src="https://images.pexels.com/photos/189333/pexels-photo-189333.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", alt="")
+        
+        .singleOverview_details_payment
+            .singleOverview_details
+                .singleOverview_details_first
+                    -const details = `${data.hotel_type} hosted by ${data.host[0].username}`
+                    .singleOverview_details_first_a
+                        h3= details
+                    .singleOverview_details_first_b
+                        img(src=`/img/users/${data.host[0].photo}`, alt="")
+                .singleOverview_details_second
+                    h4 About your stay in hotel
+                    p= data.description
+                .singleOverview_details_bed
+                    h4 Sleeping Arrangements
+                    .singleOverview_details_bed_card
+                        span
+                            img.bedimage(src="data:image/png;base64,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", alt="")
+                            br
+                            span Bedroom 1
+                            br
+                            span 1 King bed
+                .singleOverview_details_third
+                    p will implement amenities over here
+                .singleOverview_details_fourth
+                    - const reviewing = `❤️ ${data.ratingsAverage} (${data.ratingsQuantity} reviews)`
+                    h3= s= reviewing
+                    
+                    each review in data.reviews
+                        .review_card
+                            .review_card_flex
+                                .review_card_userimage
+                                    img(src=`/img/users/${review.user.photo}`, alt="")
+                                .review_card_userdetails
+                                    span
+                                        span.reviewboldusername= review.user.username
+                                        br
+                                        - const date = review.createdAt
+                                        span= date
+                            .review_card_review
+                                span= review.review
+                if user
+                    .singleOverview_writeReview
+                        form.reviewform(action=`/` method="post")
+                            .form__review
+                                label.form__label(for='review') Enter your experience if you ever have
+                                br
+                                input#review.form__input(type='text')
+                            .form__review
+                                label(for='rating') Choose a Rating:
+                                select#rating(name='rating' )
+                                    option(value='1') 1
+                                    option(value='2') 2
+                                    option(value='3') 3
+                                    option(value='4') 4
+                                    option(value='5') 5
+                            span#id= user._id
+                            span#idh= data._id
+                            .form__review
+                                button Post Review
+            .singleOverview_payment
+                    .boxShadowForm
+                        .singleOverview_payment_top
+                            h3= data.price
+                            p /night
+                            img(src="", alt="")
+                            p= `${data.ratingsAverage}(${data.ratingsQuantity})`
+                        .singleOverview_payment_form
+                            form.form_payment_form
+                                .form__grouppayment1
+                                    .form__grouppayment1a.form-rightborder
+                                        label(for='checkin') CHECK-IN
+                                        input#checkin.form__input(type='date', placeholder='Add date')
+                                    .form__grouppayment1a
+                                        label(for='checkout') CHECK-OUT
+                                        input#checkin.form__input(type='date', placeholder='Add date')
+                                .form__grouppayment1b
+                                    label(for='guests') Guests
+                                    input#password.form__input(type='number', placeholder='guest')
+                                .form__grouppayment.form-payment_button
+                                    if user
+                                        button#book-tour(data-hotel-id = data._id) Check availability
+                                    else
+                                        a(href="/login") Login
+        .singleOverview_map
+            #map(data-livelocation=`${JSON.stringify(data.livelocation)}`)
+            img(src="", alt="")
+
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
+        script(src='/js/review.js')
+        script(src='/js/mapbox.js')
+        script(src='/js/logout.js')
+        script(src='/js/stripe.js')
+
