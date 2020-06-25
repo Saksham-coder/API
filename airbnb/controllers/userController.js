@@ -4,34 +4,33 @@ const AppError = require('./../utils/appError');
 const multer = require('multer');
 
 const multerStorage = multer.diskStorage({
-	  destination: (req, file, cb) => {
-	    cb(null, 'public/img/users');
-	  },
-	  filename: (req, file, cb) => {
-	    const ext = file.mimetype.split('/')[1];
-	    cb(null, `user-${req.user.id}.${ext}`);
-	  }
-	});
+	destination: (req, file, cb) => {
+		cb(null, 'public/img/users');
+	},
+	filename: (req, file, cb) => {
+		const ext = file.mimetype.split('/')[1];
+		cb(null, `user-${req.user.id}.${ext}`);
+	}
+});
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
-    cb(null, true);
-  } else {
-    cb(new AppError('Not an image! Please upload only images.', 400), false);
-  }
+	if (file.mimetype.startsWith('image')) {
+		cb(null, true);
+	} else {
+		cb(new AppError('Not an image! Please upload only images.', 400), false);
+	}
 };
 
 const upload = multer({
-  storage: multerStorage,
-  fileFilter: multerFilter
+	storage: multerStorage,
+	fileFilter: multerFilter
 });
 
 exports.uploadUserPhoto = upload.single('photo');
 
-
 exports.updateMeHost = catchAsync(async (req, res) => {
-	console.log('From Update host middleware');
-	console.log(req.user);
+	// console.log('From Update host middleware');
+	// console.log(req.user);
 	const updatedUser = await User.findByIdAndUpdate(
 		req.user._id,
 		{
@@ -80,8 +79,7 @@ exports.updatePersonal = async (req, res) => {
 		console.log('hi from update personal controller');
 		id = req.user._id;
 
-
-		if(req.file) req.body.photo = req.file.filename
+		if (req.file) req.body.photo = req.file.filename;
 		const updatedUser = await User.findByIdAndUpdate(id, req.body, {
 			new: true,
 			runValidators: true

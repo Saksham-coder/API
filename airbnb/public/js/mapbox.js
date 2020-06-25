@@ -1,7 +1,7 @@
 /* eslint-disable */
-console.log('hi from the mapbox script for single');
+// console.log('hi from the mapbox script for single');
 const locations = JSON.parse(document.getElementById('map').dataset.livelocation);
-console.log(locations);
+// console.log(locations);
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2Frc2hhbTAzNCIsImEiOiJjazl5dGQwcGUwMGFlM21wbXZ6N3c4NWRqIn0.0rD-qn4KZewFbSLyV2ur_Q';
 
@@ -17,7 +17,7 @@ var map = new mapboxgl.Map({
 });
 
 var marker = new mapboxgl.Marker().setLngLat(locations.coordinates).addTo(map);
-console.log(locations.coordinates);
+// console.log(locations.coordinates);
 
 var popup = new mapboxgl.Popup({ offset: 30, className: 'my-class' })
 	.setLngLat(locations.coordinates)

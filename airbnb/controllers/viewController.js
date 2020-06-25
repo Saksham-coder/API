@@ -3,6 +3,8 @@ const user = require('../models/userModel');
 const Hotel = require('../models/hotelModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+const Bookings = require('../models/bookingModel');
+const Booking = require('../models/bookingModel');
 
 exports.getbase = (req, res) => {
 	res.status(200).render('base');
@@ -25,10 +27,10 @@ exports.signup = (req, res) => {
 };
 
 exports.overview = async (req, res) => {
-	console.log(req.query);
+	// console.log(req.query);
 
 	const queryObj = { ...req.query };
-	console.log(queryObj);
+	// console.log(queryObj);
 	for (var i in queryObj) {
 		if (typeof queryObj[i] === 'object') {
 			for (var j in queryObj[i]) {
@@ -78,7 +80,7 @@ exports.overview = async (req, res) => {
 	const limit = req.query.limit * 1 || 10;
 	const skip = (page - 1) * limit;
 
-	console.log('total length of your query ' + (await query).length);
+	// console.log('total length of your query ' + (await query).length);
 	const length = (await query).length;
 
 	query = query.skip(skip).limit(limit);
@@ -107,8 +109,8 @@ exports.getHotel = catchAsync(async (req, res) => {
 	// console.log(req.params)
 	const oneHotel = await Hotel.findById(req.params.id).populate('reviews');
 	// const oneHotel = await Hotel.findOne({name: req.params.name})
-	console.log(oneHotel);
-	console.log('Hi from one controller and checking error page');
+	// console.log(oneHotel);
+	// console.log('Hi from one controller and checking error page');
 	if (!oneHotel) {
 		return next(new AppError('There is no Hotel with that name', 404));
 	}
@@ -123,25 +125,40 @@ exports.postHost = (req, res) => {
 };
 
 exports.getAccount = async (req, res) => {
-	console.log('hi froom rendering');
-	console.log(req.user);
+	// console.log('hi froom rendering');
+	// console.log(req.user);
 	res.status(200).render('account', {
 		title: 'Your Account'
 	});
 };
 
 exports.getSecurity = async (req, res) => {
-	console.log('hi froom security view controller');
-	console.log(req.user);
+	// console.log('hi froom security view controller');
+	// console.log(req.user);
 	res.status(200).render('security', {
 		title: 'Security'
 	});
 };
 
 exports.getPersonal = async (req, res) => {
-	console.log('hi froom Personal view controller');
-	console.log(req.user);
+	// console.log('hi froom Personal view controller');
+	// console.log(req.user);
 	res.status(200).render('personal', {
 		title: 'Personal Information'
 	});
 };
+
+exports.getMyHotel = catchAsync(async (req, res, next) => {
+	// Find all the bookings
+	// console.log('Hi from get booked hotel controller');
+	const bookings = await Booking.find({ user: req.user._id });
+	// console.log(bookings);
+	// Find hotel with thereturned IDs
+	const hotelIDs = bookings.map((el) => el.hotel);
+	const hotels = await Hotel.find({ _id: { $in: hotelIDs } });
+
+	res.status(200).render('bookedHotels', {
+		title: 'My Hotels',
+		hotels
+	});
+});

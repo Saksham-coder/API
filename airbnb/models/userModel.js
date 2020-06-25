@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function(next) {
-	console.log(this);
+	// console.log(this);
 	this.password = await bcrypt.hash(this.password, 12);
 	this.confirmPassword = undefined;
 	next();
@@ -58,10 +58,10 @@ userSchema.pre('save', async function(next) {
 // };
 
 userSchema.methods.createPasswordResetToken = function() {
-	console.log('hi from model instance');
+	// console.log('hi from model instance');
 	const resetToken = crypto.randomBytes(32).toString('hex');
 	this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
-	console.log({ resetToken }, this.passwordResetToken);
+	// console.log({ resetToken }, this.passwordResetToken);
 	this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
 	return resetToken;
 };

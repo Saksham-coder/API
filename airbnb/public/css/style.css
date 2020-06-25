@@ -3,6 +3,13 @@ body {
 	padding: 0px;
 }
 
+.fa-search {
+	font-size: 13px;
+	margin-right: 5px;
+	position: relative;
+	bottom: 1.7px;
+}
+
 .alert {
 	position: fixed;
 	top: 0;
@@ -98,6 +105,64 @@ header a {
 	background-color: black;
 	padding: 50px;
 	color: white;
+}
+
+.base_video_search {
+	width: 100%;
+}
+
+.base_video_search_a {
+	width: 100%;
+	display: block;
+	margin-bottom: -6px;
+}
+
+.base_video_search_a video {
+	width: 100%;
+	height: auto;
+	pointer-events: none;
+}
+
+.base_video_search_b {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+	background: none;
+
+	/* left: 5%; */
+}
+
+.base_video_search_b form {
+	display: flex;
+	height: 70px;
+	align-items: center;
+	padding: 10px;
+	border: 1px solid gainsboro;
+	margin-top: 2%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 15px;
+}
+
+.form_box {
+	border-right: 1.5px solid gainsboro;
+	padding: 0px 5px;
+}
+
+.form_box label {
+	margin-left: 25px;
+	font-size: small;
+	font-weight: bold;
+}
+
+.base_video_search_b form button {
+	background: linear-gradient(to right, rgb(255, 65, 108), rgb(255, 75, 43));
+	margin-left: 5px;
+	border-radius: 15px;
+}
+
+.base_video_search_b form input {
+	background: none;
+	border: none;
 }
 
 .base_online_main_details_left {
@@ -839,6 +904,18 @@ input[type=password]:hover {
 .bedimage {
 	width: 60px;
 }
+.singleOverview_details_third {
+	height: 215px;
+	border-bottom: 1px solid gainsboro;
+	margin: 50px 0px;
+}
+.utilmain {
+	display: flex;
+}
+.utils {
+	width: 40px;
+	height: 40px;
+}
 .review_card {
 	width: 100%;
 }
@@ -859,6 +936,12 @@ input[type=password]:hover {
 }
 .singleOverview_details_fourth {
 	margin-bottom: 30px;
+	border-bottom: 1px solid gainsboro;
+}
+.singleOverview_writeReview {
+	border-bottom: 1px solid gainsboro;
+	padding-bottom: 20px;
+	margin-bottom: 10px;
 }
 .singleOverview_map {
 	width: 100%;
@@ -962,4 +1045,38 @@ input[type=password]:hover {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 15px;
 	padding: 10px;
+}
+/* Booking Page */
+.booking {
+	display: flex;
+}
+.bookingCard h2 {
+	text-align: center;
+	background-color: greenyellow;
+	margin-bottom: 0px;
+	color: white;
+	font-weight: bold;
+}
+.bookingCard {
+	width: 300px;
+	height: 645px;
+	margin: 20px;
+	box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+}
+.bookingImage {
+	width: 300px;
+	height: 200px;
+}
+.bookingCard_hotel-details,
+.bookingCard_hotel-average,
+.bookingCard_host-details,
+.bookingCard_price-details {
+	border-bottom: 1px solid gainsboro;
+}
+.bookingCard_hotel-details h5,
+.bookingCard_hotel-average h5,
+.bookingCard_host-details h5,
+.bookingCard_price-details h5 {
+	text-align: center;
+	color: rgb(255, 65, 108);
 }

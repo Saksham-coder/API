@@ -72,11 +72,11 @@ block content
                 each hotel in data
                     //- -console.log(hotel)
                     - var taking_hotels = hotel.livelocation
-                    -console.log(taking_hotels)
+                    //- -console.log(taking_hotels)
                     
                     - hotels.push(taking_hotels)
                     
-                -console.log("all hotels location")
-                -console.log(hotels)
+                //- -console.log("all hotels location")
+                //- -console.log(hotels)
                 #mainmap(data-locations=`${JSON.stringify(hotels)}`)
             

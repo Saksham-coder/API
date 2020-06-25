@@ -1,13 +1,13 @@
 const updatepersonal = async (data) => {
 	try {
-		console.log(data);
+		// console.log(data);
 		const res = await axios({
 			method: 'PATCH',
-			url: 'http://127.0.0.1:3000/api/v1/users/updatePersonal',
+			url: '/api/v1/users/updatePersonal',
 			data
 		});
-		console.log(res);
-		console.log(res.data);
+		// console.log(res);
+		// console.log(res.data);
 		if (res.data.status === 'success') {
 			alert('success');
 			window.setTimeout(() => {
@@ -30,7 +30,7 @@ document.querySelector('.personalform').addEventListener('submit', (e) => {
 	form.append('address', document.getElementById('address').value);
 	form.append('photo', document.getElementById('photo').files[0]);
 
-	console.log(form);
+	// console.log(form);
 
 	updatepersonal(form);
 });

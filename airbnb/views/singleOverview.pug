@@ -9,6 +9,7 @@ html
         link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
         link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
         title Air | #{title}
+        link(rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous")
         script(src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js')
         link(href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet')
         script(src="https://js.stripe.com/v3/")
@@ -21,7 +22,7 @@ html
         
     .singleOverview
         .singleOverview_topdetails
-            h2= data.summary
+            h2= data.description
             span    
                 - const desc = `❤️ ${data.ratingsAverage}(${data.ratingsQuantity})  ${data.location} `
                 span= desc
@@ -44,7 +45,7 @@ html
                         img(src=`/img/users/${data.host[0].photo}`, alt="")
                 .singleOverview_details_second
                     h4 About your stay in hotel
-                    p= data.description
+                    p= data.summary
                 .singleOverview_details_bed
                     h4 Sleeping Arrangements
                     .singleOverview_details_bed_card
@@ -55,7 +56,31 @@ html
                             br
                             span 1 King bed
                 .singleOverview_details_third
-                    p will implement amenities over here
+                    h4 Amenities
+                    .utilmain
+                        ul
+                            li 
+                                img.utils(src="/img/utilities/wifi.png", alt="")
+                                span WIFI
+                            li 
+                                img.utils(src="/img/utilities/security.png", alt="")
+                                span Security
+                            li 
+                                img.utils(src="/img/utilities/tag.png", alt="")
+                                span Tag
+                            li 
+                                img.utils(src="/img/utilities/utility.png", alt="")
+                                span Utility
+                        ul
+                            li
+                                img.utils(src="/img/utilities/room-clean.png", alt="")
+                                span Room Clean
+                            li
+                                img.utils(src="/img/utilities/luggage-handler.png", alt="")
+                                span Luggage Handler
+                            li 
+                                img.utils(src="/img/utilities/car-parking.png", alt="")
+                                span Car Parking
                 .singleOverview_details_fourth
                     - const reviewing = `❤️ ${data.ratingsAverage} (${data.ratingsQuantity} reviews)`
                     h3= s= reviewing
@@ -116,7 +141,9 @@ html
                                         button#book-tour(data-hotel-id = data._id) Check availability
                                     else
                                         a(href="/login") Login
+        h4 Location
         .singleOverview_map
+            
             #map(data-livelocation=`${JSON.stringify(data.livelocation)}`)
             img(src="", alt="")
 

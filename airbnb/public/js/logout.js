@@ -19,11 +19,11 @@ const logout = async () => {
 		console.log('clicked');
 		const res = await axios({
 			method: 'GET',
-			url: 'http://127.0.0.1:3000/api/v1/users/logout'
+			url: '/api/v1/users/logout'
 		});
 		if (res.data.status === 'success') {
 			showAlert('success', 'Logged out successfully');
-			window.location.assign('http://127.0.0.1:3000/');
+			window.location.assign('/');
 		}
 	} catch (err) {
 		showAlert('error', 'Try Logout aftersometime');

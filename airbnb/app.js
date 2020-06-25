@@ -7,6 +7,7 @@ const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -24,9 +25,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-	console.log(req.cookies);
+	// console.log(req.cookies);
 	next();
 });
+
+app.use(compression());
 
 app.use('/', viewRouter);
 app.use('/api/v1/hotels', hotelRouter);

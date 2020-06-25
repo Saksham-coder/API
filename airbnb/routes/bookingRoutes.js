@@ -5,6 +5,6 @@ const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
-router.get('/checkout-session/:hotelID', authController.isLoggedIn, bookingController.getCheckoutSession);
+router.get('/checkout-session/:hotelId', authController.isLoggedIn, bookingController.getCheckoutSession);
 
 module.exports = router;

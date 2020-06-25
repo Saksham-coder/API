@@ -13,7 +13,7 @@ exports.getAllReviews = catchAsync(async (req, res, next) => {
 });
 
 exports.createReview = catchAsync(async (req, res, next) => {
-	console.log('hi from cretae revies controller');
+	// console.log('hi from cretae revies controller');
 	const newReview = await Review.create(req.body);
 	res.status(201).json({
 		status: 'success',

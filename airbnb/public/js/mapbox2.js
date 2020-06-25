@@ -1,7 +1,7 @@
 /* eslint-disable */
-console.log('hi from the mapbox script for so many map plot in overview');
+// console.log('hi from the mapbox script for so many map plot in overview');
 const locations = JSON.parse(document.getElementById('mainmap').dataset.locations);
-console.log(locations);
+// console.log(locations);
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2Frc2hhbTAzNCIsImEiOiJjazl5dGQwcGUwMGFlM21wbXZ6N3c4NWRqIn0.0rD-qn4KZewFbSLyV2ur_Q';
 

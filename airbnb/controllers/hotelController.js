@@ -11,7 +11,7 @@ exports.aliasTopHotel = (req, res, next) => {
 };
 
 exports.getAllHotel = catchAsync(async (req, res) => {
-	console.log(req.query);
+	// console.log(req.query);
 
 	// BUILD QUERY
 	// 1. FILTERING
@@ -29,7 +29,7 @@ exports.getAllHotel = catchAsync(async (req, res) => {
 
 	let query = Hotel.find(JSON.parse(queryStr));
 
-	console.log('total length of your query ' + query.length);
+	// console.log('total length of your query ' + query.length);
 
 	// 2.SORTING
 	if (req.query.sort) {
@@ -78,8 +78,8 @@ exports.getHotel = catchAsync(async (req, res) => {
 	// console.log(req.params)
 	const oneHotel = await Hotel.findById(req.params.id).populate('reviews');
 	// const oneHotel = await Hotel.findOne({name: req.params.name})
-	console.log('Fro one hotel conroller ');
-	console.log('searching one hotel');
+	// console.log('Fro one hotel conroller ');
+	// console.log('searching one hotel');
 	if (!oneHotel) {
 		return next(new AppError('There is no hotel with that name', 404));
 	}
@@ -118,14 +118,14 @@ exports.createHotel = async (req, res) => {
 	try {
 		var parsedBody = { ...req.body };
 		if (req.cookies.jwt) {
-			console.log('token is present in cookie and appending user id to hotel');
+			// console.log('token is present in cookie and appending user id to hotel');
 			let token = req.cookies.jwt;
 			const decoded = await jwt.verify(token, 'abcdefebgudjnwksjcscjscsdjkcnjdc');
-			console.log(decoded);
+			// console.log(decoded);
 			id = decoded.id;
 			// parsedBody.push({ host: id });
 			parsedBody.host = id;
-			console.log(parsedBody);
+			// console.log(parsedBody);
 		}
 
 		const newHotel = await Hotel.create(parsedBody);

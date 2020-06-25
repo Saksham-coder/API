@@ -78,6 +78,9 @@ const hotelSchema = new mongoose.Schema(
 			address: String,
 			description: String
 		},
+		utility: {
+			type: Object
+		},
 		// "startLocation": {
 		// 	"description": "Miami, USA",
 		// 	"type": "Point",
@@ -126,7 +129,7 @@ hotelSchema.pre(/^find/, function(next) {
 });
 
 hotelSchema.pre('save', function(next) {
-	console.log(this);
+	// console.log(this);
 	this.slug = slug(this.name, { lower: true });
 	next();
 });

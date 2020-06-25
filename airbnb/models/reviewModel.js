@@ -53,9 +53,9 @@ reviewSchema.statics.calcAverageRatings = async function(hotelId) {
 			}
 		}
 	]);
-	console.log('consoling stats below');
+	// console.log('consoling stats below');
 
-	console.log(stats);
+	// console.log(stats);
 
 	if (stats.length > 0) {
 		await Hotel.findByIdAndUpdate(hotelId, {

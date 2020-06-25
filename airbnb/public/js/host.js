@@ -1,9 +1,9 @@
 const host = async (name, location, summary, description, rooms, price) => {
 	try {
-		console.log('hi');
+		// console.log('hi');
 		const res = await axios({
 			method: 'POST',
-			url: 'http://127.0.0.1:3000/api/v1/hotels',
+			url: '/api/v1/hotels',
 			data: {
 				name,
 				location,
@@ -13,16 +13,16 @@ const host = async (name, location, summary, description, rooms, price) => {
 				price
 			}
 		});
-		console.log(res);
-		console.log(res.data);
+		// console.log(res);
+		// console.log(res.data);
 		if (res.data.status === 'success') {
 			const response = await axios({
 				method: 'PATCH',
-				url: 'http://127.0.0.1:3000/api/v1/users/updateMeHost'
+				url: '/api/v1/users/updateMeHost'
 			});
 			alert('success');
 
-			window.location.assign('http://127.0.0.1:3000/overview');
+			window.location.assign('/overview');
 		}
 	} catch (err) {
 		alert(err.data);

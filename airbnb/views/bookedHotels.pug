@@ -1,0 +1,31 @@
+extends base
+
+block content
+    //- p= hotels
+    -var length = hotels.length
+    if length === 0
+        h2 Not Booked Any Hotel With us now
+    .booking
+        each booking in hotels
+            
+            .bookingCard
+                h2 PAID
+                .bookingCard_image
+                    img.bookingImage(src="/img/Hotels/bookinghotel.jpeg", alt="")
+                .bookingCard_details
+                    .bookingCard_hotel-details
+                        h5 Full Address
+                        p= booking.livelocation.description
+                        p= booking.livelocation.address
+                    .bookingCard_hotel-average 
+                        h5 Rating
+                        p= booking.ratingsAverage
+                    .bookingCard_host-details
+                        h5 Your Host Details
+                        p Hosted by:
+                        p= booking.host[0].username
+                    .bookingCard_price-details
+                        h5 Amount Received in 'INR'
+                        p PAID
+                        p= booking.price
+

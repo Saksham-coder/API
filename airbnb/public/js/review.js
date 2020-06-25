@@ -1,11 +1,11 @@
 const reviewing = async (review, rating, id, idh) => {
 	try {
-		console.log('From ajax' + review, rating, id, idh);
+		// console.log('From ajax' + review, rating, id, idh);
 		// `${req.protocol}://${req.get('host')}/me/personal`
 
 		const res = await axios({
 			method: 'POST',
-			url: 'http://127.0.0.1:3000/api/v1/reviews',
+			url: '/api/v1/reviews',
 			data: {
 				review,
 				rating,
@@ -13,8 +13,8 @@ const reviewing = async (review, rating, id, idh) => {
 				hotel: idh
 			}
 		});
-		console.log(res);
-		console.log(res.data);
+		// console.log(res);
+		// console.log(res.data);
 		if (res.data.status === 'success') {
 			alert('success');
 			window.setTimeout(() => {

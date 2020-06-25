@@ -24,4 +24,32 @@ block content
                     label.form__label(for='price') price
                     input#price.form__input(type='price', placeholder='price', required)
                 .form__group
+                        label(for='hotel_type') Choose Hotel Type:
+                        select#hotel_type(name='hotel_type' form='hotel_types')
+                            option(value='Private Room') Private Room
+                            option(value='Apartment Room') Apartment Room
+                            option(value='Entire House') Entire House
+                            option(value='Entire Flat') Entire Flat
+                            option(value='Entire Apartment') Entire Apartment
+                input(type='checkbox' name='utility[wifi]' value='wifi' checked)
+                |  WI-FI
+                br
+                input(type='checkbox' name='utility[utility]' value='utility' checked)
+                |  utility
+                br
+                input(type='checkbox' name='utility[luggage-handler]' value='luggage-handler' checked)
+                |  luggage-handler
+                br
+                input(type='checkbox' name='utility[room-clean]' value='room-clean' checked)
+                |  room-clean
+                br
+                input(type='checkbox' name='utility[car-parking]' value='car-parking' checked)
+                |  car-parking
+                br
+                input(type='checkbox' name='utility[security]' value='security' checked)
+                |  security
+                br
+                input(type='checkbox' name='utility[tag]' value='tag' checked)
+                |  tag
+                .form__group
                     button.btn.btn--green Host 
