@@ -4,10 +4,14 @@ const stripe = Stripe(
 
 // hotelId grabbed from template  camelcase will convert it by - notation
 
-const bookHotel = async (hotelId) => {
+const bookHotel = async (hotelId, checkin, checkout, guest, price) => {
 	try {
 		// 1. Get checkout session from API
-		const session = await axios(`/api/v1/bookings/checkout-session/${hotelId}`);
+		// success_url: `${req.protocol}://${req.get('host')}/?hotel=${req.params.hotelId}&user=${req.user
+		// 	.id}&price=${hotel.price}`,
+		const session = await axios(
+			`/api/v1/bookings/checkout-session/?hotelId=${hotelId}&checkin=${checkin}&checkout=${checkout}&guest=${guest}&price=${price}`
+		);
 		console.log('session for booking by axios');
 		console.log(axios);
 		// console.log(session);
@@ -23,9 +27,15 @@ const bookHotel = async (hotelId) => {
 };
 
 document.getElementById('book-tour').addEventListener('click', (e) => {
+	e.preventDefault();
 	e.target.textContent = 'Processing...';
 	const hotelId = e.target.dataset.hotelId;
-	console.log(hotelId);
+	const checkin = document.getElementById('checkin').value;
+	const checkout = document.getElementById('checkout').value;
+	const guest = document.getElementById('guest').value;
+	const price = document.querySelector('.total_payment').innerText;
 
-	bookHotel(hotelId);
+	console.log(hotelId, checkin, checkout, guest, price);
+
+	bookHotel(hotelId, checkin, checkout, guest);
 });

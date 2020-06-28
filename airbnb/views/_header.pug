@@ -10,18 +10,18 @@ header
         if user.role === 'user'
             .navuserpic
               a.sign.host(href='/me/host') Host Your Home
-              a.sign.logout Log out
+              a.sign.logout Logout
               a.nav__el(href='/me')
                 span= user.username.split(' ')[0]
                 img.headerphoto(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
         else 
             .navuserpic
-              a.sign.logout Log out
+              a.sign.logout Logout
               a.nav__el(href='/me')
                 span= user.username.split(' ')[0]
                 img.headerphoto(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
     
     else
-        a.sign(href='/signup') Sign up
-        a.sign1(href='/login') Log in
+        a.sign(href='/signup') Signup
+        a.sign1(href='/login') Login
         

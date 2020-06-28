@@ -3,6 +3,7 @@ extends base
 block content
     //- p= hotels
     -var length = hotels.length
+    //- -console.log(hotels)
     if length === 0
         h2 Not Booked Any Hotel With us now
     .booking
@@ -15,17 +16,25 @@ block content
                 .bookingCard_details
                     .bookingCard_hotel-details
                         h5 Full Address
-                        p= booking.livelocation.description
-                        p= booking.livelocation.address
+                        p= booking.hotel.livelocation.address
+                        //- p= booking.hotel.address
                     .bookingCard_hotel-average 
                         h5 Rating
-                        p= booking.ratingsAverage
+                        p= booking.hotel.ratingsAverage
                     .bookingCard_host-details
                         h5 Your Host Details
                         p Hosted by:
-                        p= booking.host[0].username
+                        p= booking.user.username
                     .bookingCard_price-details
                         h5 Amount Received in 'INR'
                         p PAID
                         p= booking.price
-
+                    .bookingCard_checkin-details
+                        h5 Check-in
+                        p= booking.checkin
+                    .bookingCard_checkout-details
+                        h5 Check-out
+                        p= booking.checkout
+                    .bookingCard_guest-details
+                        h5 Total-Guest
+                        p= booking.guest

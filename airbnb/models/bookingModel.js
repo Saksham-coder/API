@@ -22,13 +22,30 @@ const bookingSchema = new mongoose.Schema({
 	paid: {
 		type: Boolean,
 		default: true
+	},
+	checkin: {
+		type: String
+	},
+	checkout: {
+		type: String
+	},
+	guest: {
+		type: String
+	},
+	price: {
+		type: String
 	}
 });
 
 bookingSchema.pre(/^find/, function(next) {
-	this.populate('user').populate({
-		path: 'tour',
-		select: 'name'
+	// this.populate('hotel');
+	// this.populate('user');
+	this.populate({
+		path: 'hotel',
+		select: 'name livelocation ratingsAverage '
+	}).populate({
+		path: 'user',
+		select: 'username photo'
 	});
 	next();
 });

@@ -31,6 +31,7 @@ exports.uploadUserPhoto = upload.single('photo');
 exports.updateMeHost = catchAsync(async (req, res) => {
 	// console.log('From Update host middleware');
 	// console.log(req.user);
+	// Find user by id which is acquiring from locals and then updating that
 	const updatedUser = await User.findByIdAndUpdate(
 		req.user._id,
 		{
@@ -74,6 +75,7 @@ exports.getUser = async (req, res) => {
 	}
 };
 
+// To update personal details this controller is created
 exports.updatePersonal = async (req, res) => {
 	try {
 		console.log('hi from update personal controller');

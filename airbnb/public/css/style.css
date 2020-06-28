@@ -3,6 +3,11 @@ body {
 	padding: 0px;
 }
 
+#id,
+#idh {
+	color: white;
+}
+
 .fa-search {
 	font-size: 13px;
 	margin-right: 5px;
@@ -54,25 +59,44 @@ header a {
 .sign {
 	font-size: large;
 	margin: 5px;
-	padding: 5px;
+	padding: 9px;
+	padding-bottom: 10px;
 	color: black;
+	border-radius: 18px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-decoration: none;
 }
 
 .sign1 {
 	font-size: 1.2rem;
 	margin: 5px;
-	border: 1px solid grey;
 	border-radius: 18px;
 	padding: 9px;
+	padding-bottom: 10px;
 	color: black;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-decoration: none;
+}
+
+.sign1:hover,
+.sign:hover {
+	text-decoration: none;
 }
 
 .headerphoto {
-	width: 35px;
-	height: auto;
+	width: 40px;
+	height: 38px;
 	border-radius: 100%;
 }
 
+.logout {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 17px;
+	height: 45px;
+	padding-top: 8px;
+	margin-right: 12px;
+	cursor: pointer;
+}
 .nav__el {
 	margin-top: 5px;
 	width: auto;
@@ -86,27 +110,28 @@ header a {
 	font-weight: 600;
 }
 
+.nav__el:hover {
+	text-decoration: none;
+}
+
 .nav__el span {
 	margin-right: 1px;
 	text-decoration: none;
 	color: black;
 }
-
 .navuserpic {
 	display: flex;
 	align-items: center;
 }
-
 /* Base Page */
-
 .base_online_main {
 	width: 100%;
-	height: 800px;
+	height: 1100px;
+
 	background-color: black;
 	padding: 50px;
 	color: white;
 }
-
 .base_video_search {
 	width: 100%;
 }
@@ -116,22 +141,19 @@ header a {
 	display: block;
 	margin-bottom: -6px;
 }
-
 .base_video_search_a video {
 	width: 100%;
 	height: auto;
 	pointer-events: none;
 }
-
 .base_video_search_b {
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 0);
 	background: none;
-
+	/* width: 655px; */
 	/* left: 5%; */
 }
-
 .base_video_search_b form {
 	display: flex;
 	height: 70px;
@@ -142,29 +164,25 @@ header a {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 15px;
 }
-
 .form_box {
 	border-right: 1.5px solid gainsboro;
 	padding: 0px 5px;
+	/* width: 180px; */
 }
-
 .form_box label {
 	margin-left: 25px;
 	font-size: small;
 	font-weight: bold;
 }
-
 .base_video_search_b form button {
 	background: linear-gradient(to right, rgb(255, 65, 108), rgb(255, 75, 43));
 	margin-left: 5px;
 	border-radius: 15px;
 }
-
 .base_video_search_b form input {
 	background: none;
 	border: none;
 }
-
 .base_online_main_details_left {
 	width: 452px;
 }
@@ -178,40 +196,34 @@ header a {
 	height: 552px;
 	margin: 40px 0px 40px 0px;
 }
-
 .base_online_main_images_left {
 	width: 50%;
 	height: 90%;
 	background-color: rgb(77, 72, 72);
 	border-radius: 25px;
 }
-
 .base_online_main_images_left a {
 	width: 100%;
 	height: 300px;
 	text-decoration: none;
 	color: white;
 }
-
 .base_online_main_images_left a span {
 	font-size: medium;
 	margin: 10px;
 	margin-top: 10px;
 	width: 20px;
 }
-
 .base_online_main_images_left a img {
 	width: 100%;
 	height: 426px;
 	background-color: thistle;
 	border-radius: 25px 25px 0px 0px;
 }
-
 .base_online_main_images_right {
 	width: 50%;
 	display: flex;
 }
-
 .base_online_main_images_right_a {
 	width: 50%;
 	height: 250px;
@@ -223,29 +235,28 @@ header a {
 	color: white;
 	/* overflow: hidden; */
 }
-
 .base_online_main_images_right_img {
 	width: 100%;
 	border-radius: 9px 9px 0px 0px;
 }
-
 .base_online_main_images_right_span {
 	margin-left: 20px;
 	color: white;
 	text-decoration: none;
 }
-
 .base_online_main_frontline {
 	display: flex;
 	width: 100%;
 	padding: 40px;
 	color: black;
+	background-color: white;
 	padding-top: 60px;
 	margin-bottom: 80px;
+	height: 300px;
 }
-
 .base_online_main_frontline_left {
-	width: 50%;
+	width: 45%;
+	margin-left: 10px;
 }
 
 .base_online_main_frontline_left h2 {
@@ -253,32 +264,36 @@ header a {
 	font-weight: bolder;
 	margin-bottom: 25px;
 }
-
 .base_online_main_frontline_left a {
 	border: 1px solid black;
+
 	border-radius: 5px;
 	padding: 5px 15px;
 	text-decoration: none;
 	color: black;
 }
-
 .base_online_main_frontline_right {
-	width: 50%;
+	width: 45%;
+	margin-left: 80px;
 }
 
 .base_online_main_frontline_right p {
 	width: 74%;
 }
 
-/* SIGNUP FORM */
+.base_online_main_background {
+	background-color: white;
+	width: 109%;
+	margin-left: -50px;
+}
 
+/* SIGNUP FORM */
 .mainsign {
 	width: 100%;
 	height: 100vh;
 	background-color: #fd5c63;
 	display: flex;
 }
-
 .left {
 	width: 50%;
 	height: 100%;
@@ -287,51 +302,42 @@ header a {
 	background-size: 100% 100%;
 	/* overflow: hidden; */
 }
-
 .left-text h1 {
 	color: white;
 	font-size: 440%;
 	word-spacing: 15px;
 	padding-left: 5%;
 }
-
 .left-text {
 	width: 50%;
 	position: absolute;
 	bottom: 2px;
 }
-
 .right {
 	width: 50%;
 	height: 100%;
 	background-color: white;
 }
-
 .signup-form {
-	/* margin-top: 10%; */
-	/* padding-top: 4%; */
+	/* margin-top: 10%; */ /* padding-top: 4%; */
 	width: 80%;
 	margin: auto;
 	position: relative;
 	top: 7%;
 }
-
 .formdesign,
 .signup-form_text {
 	width: 85%;
 	margin: auto;
 }
-
 .signup_logo {
 	width: 100px;
 	height: auto;
 }
-
 .signup-form_text p a {
 	text-decoration: none;
 	color: #2f89fc;
 }
-
 .form__group {
 	margin-top: 5%;
 }
@@ -341,12 +347,10 @@ header a {
 	border-style: hidden;
 	height: 35px;
 }
-
 .form__label__text {
 	color: #5d5d5a;
 	font-size: 1.1rem;
 }
-
 input[type=email],
 input[type=text],
 input[type=password] {
@@ -354,25 +358,21 @@ input[type=password] {
 	border: none;
 	border-bottom: 4px solid #f0f0f0;
 }
-
 .form__input:hover {
 	width: 100%;
 	border-style: hidden;
 	height: 35px;
 }
-
 textarea:focus,
 input:focus {
 	outline: none;
 }
-
 input[type=email]:hover,
 input[type=text]:hover,
 input[type=password]:hover {
 	border: none;
 	border-bottom: 4px solid #fd5c63;
 }
-
 .btn {
 	width: 100%;
 	height: 45px;
@@ -382,17 +382,14 @@ input[type=password]:hover {
 	font-size: 1.1rem;
 	font-weight: 600;
 }
-
 /* LOGIN */
 /* CARAOUSEl */
-
 .mainlogin {
 	display: flex;
 	width: 100%;
 	height: 100vh;
 	overflow: hidden;
 }
-
 .leftlogin {
 	width: 50%;
 	height: 100%;
@@ -400,12 +397,10 @@ input[type=password]:hover {
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
-
 .rightlogin {
 	width: 50%;
 	background-color: #f0f0f0;
 }
-
 .hideblock {
 	opacity: 0;
 }
@@ -415,7 +410,6 @@ input[type=password]:hover {
 	position: relative;
 	top: 25%;
 }
-
 .login-form h2 {
 	color: #fd5c63;
 }
@@ -424,7 +418,6 @@ input[type=password]:hover {
 	margin-top: 2%;
 	color: #575151;
 }
-
 .btn1 {
 	width: 100%;
 	height: 45px;
@@ -435,7 +428,6 @@ input[type=password]:hover {
 	font-weight: 600;
 	margin-top: 2%;
 }
-
 .forgettag {
 	text-align: center;
 }
@@ -451,7 +443,6 @@ input[type=password]:hover {
 	height: 100vh;
 	background-size: cover;
 }
-
 .forget_main {
 	width: 40%;
 	position: absolute;
@@ -506,6 +497,7 @@ input[type=password]:hover {
 /* Account */
 .account {
 	width: 100%;
+	height: 100vh;
 }
 .account-card__first.a img {
 	width: 20px;
@@ -564,6 +556,7 @@ input[type=password]:hover {
 /* Update Password Security */
 .security {
 	width: 100%;
+	height: 100vh;
 }
 .security-main,
 .security-top {
@@ -701,6 +694,48 @@ input[type=password]:hover {
 	background-color: #b2f19a;
 }
 /* overview */
+.searchbar_form {
+	width: 95%;
+	margin: 0px auto;
+}
+.searchbar_top,
+.searchbar_button {
+	display: inline-block;
+}
+.searchbar_top {
+	display: flex;
+}
+.searchbar_top_input label {
+	font-weight: bold;
+	font-size: small;
+	margin-bottom: 0px;
+}
+.searchbar_top_input input {
+	margin-top: 0px;
+}
+.searchbar_top_input {
+	border-right: 1px solid gainsboro;
+	width: 180px;
+	margin-right: 5px;
+	padding-right: 5px;
+}
+.searchbar_button {
+	width: 100%;
+}
+.button {
+	width: 100px;
+	margin: 0px auto;
+	margin-top: 5px;
+}
+.button button {
+	border: none;
+	background: linear-gradient(to right, rgb(255, 65, 108), rgb(255, 75, 43));
+	font-weight: bold;
+	color: ghostwhite;
+	width: 100px;
+	height: 30px;
+	border-radius: 15px;
+}
 .overview_main {
 	display: flex;
 }
@@ -714,7 +749,8 @@ input[type=password]:hover {
 }
 .overview_mainright {
 	/* background-color: gold; */
-	width: 100%; /* height: 200vh; */
+	width: 100%;
+	/* height: 200vh; */
 }
 .fixingmap {
 	width: 100%;
@@ -909,6 +945,18 @@ input[type=password]:hover {
 	border-bottom: 1px solid gainsboro;
 	margin: 50px 0px;
 }
+.total_payment,
+.total_paymentb {
+	display: inline-block;
+}
+.total_payment {
+	font-weight: bold;
+	font-size: x-large;
+}
+.total_paymentb {
+	color: greenyellow;
+	font-weight: bold;
+}
 .utilmain {
 	display: flex;
 }
@@ -1045,6 +1093,7 @@ input[type=password]:hover {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	border-radius: 15px;
 	padding: 10px;
+	width: 365px;
 }
 /* Booking Page */
 .booking {
@@ -1059,7 +1108,7 @@ input[type=password]:hover {
 }
 .bookingCard {
 	width: 300px;
-	height: 645px;
+	height: auto;
 	margin: 20px;
 	box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
 }
@@ -1070,13 +1119,103 @@ input[type=password]:hover {
 .bookingCard_hotel-details,
 .bookingCard_hotel-average,
 .bookingCard_host-details,
-.bookingCard_price-details {
+.bookingCard_price-details,
+.bookingCard_checkin-details,
+.bookingCard_checkout-details,
+.bookingCard_guest-details {
 	border-bottom: 1px solid gainsboro;
 }
 .bookingCard_hotel-details h5,
 .bookingCard_hotel-average h5,
 .bookingCard_host-details h5,
-.bookingCard_price-details h5 {
+.bookingCard_price-details h5,
+.bookingCard_checkin-details h5,
+.bookingCard_checkout-details h5,
+.bookingCard_guest-details h5 {
 	text-align: center;
 	color: rgb(255, 65, 108);
+}
+.bookingCard_hotel-details p,
+.bookingCard_hotel-average p,
+.bookingCard_host-details p,
+.bookingCard_price-details p,
+.bookingCard_checkin-details p,
+.bookingCard_checkout-details p,
+.bookingCard_guest-details p {
+	font-weight: bold;
+}
+/* FOOTER */
+.footer .item p {
+	margin-top: 30px;
+	text-transform: uppercase;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+}
+.item ul {
+	margin-left: -39px;
+}
+.item ul a,
+.second-footer a {
+	color: #383838;
+	text-decoration: none;
+	color: black;
+}
+.item ul a:hover,
+.second-footer a:hover {
+	text-decoration: underline;
+	color: black;
+}
+ul a li {
+	margin-top: 20px;
+	color: black;
+}
+.footer {
+	background-color: #dcdcdc;
+	display: flex;
+	justify-content: space-around;
+	padding: 0;
+	margin: 0;
+}
+.item {
+	margin-bottom: 30px;
+}
+hr {
+	width: 75%;
+	margin-left: 180px;
+	background-color: #cdcdcd;
+}
+.second-footer {
+	background-color: #dcdcdc;
+	display: flex;
+	padding-top: 20px;
+	padding-left: 120px;
+	justify-content: left;
+	padding-bottom: 30px;
+}
+/* HOST */
+.main {
+	width: 100%;
+	background-color: #fd5c63;
+}
+.host-form {
+	width: 60%;
+	margin: 0px auto;
+	background-color: #caccd1;
+}
+.hosting label {
+	font-weight: bold;
+	font-size: large;
+}
+.amenitiesheader,
+.mapheader {
+	margin-top: 65px;
+	font-weight: bolder;
+}
+.hosting button {
+	background-color: #17b978;
+}
+.hosting label::after {
+	content: '*';
+	color: red;
 }

@@ -9,12 +9,15 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const compression = require('compression');
 
+// Error handler
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
 const bodyParser = require('body-parser');
 const app = express();
 
+// Pug engine
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -31,7 +34,12 @@ app.use((req, res, next) => {
 
 app.use(compression());
 
+// Routes
+
+// VIEW ROUTES
 app.use('/', viewRouter);
+
+// API ROUTES
 app.use('/api/v1/hotels', hotelRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
@@ -44,15 +52,6 @@ app.all('*', (req, res, next) => {
 	// });
 	next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
-
-// app.use((err, req, res, next) => {
-// 	err.statusCode = err.statusCode || 500;
-// 	err.status = err.status || 'error';
-// 	res.status(err.statusCode).json({
-// 		status: err.status,
-// 		message: err.message
-// 	});
-// });
 
 app.use(globalErrorHandler);
 

@@ -116,6 +116,7 @@ exports.updateHotel = async (req, res) => {
 
 exports.createHotel = async (req, res) => {
 	try {
+		console.log(req.body);
 		var parsedBody = { ...req.body };
 		if (req.cookies.jwt) {
 			// console.log('token is present in cookie and appending user id to hotel');
@@ -125,7 +126,15 @@ exports.createHotel = async (req, res) => {
 			id = decoded.id;
 			// parsedBody.push({ host: id });
 			parsedBody.host = id;
-			// console.log(parsedBody);
+			if (req.body.longitude) {
+				coordinate = {};
+				// coordinates = [ req.body.longitude, req.body.latitude ];
+				coordinate.coordinates = [ req.body.longitude, req.body.latitude ];
+				coordinate.description = req.body.descript;
+				coordinate.address = req.body.add;
+				parsedBody.livelocation = coordinate;
+			}
+			console.log(parsedBody);
 		}
 
 		const newHotel = await Hotel.create(parsedBody);

@@ -1,22 +1,33 @@
 extends base
 
 block content
-    form(action='/overview' method='GET')
-        label(for='name') 
-        input#name(type='text' name='name' placeholder='Search By Hotel name')
-        label(for='location')
-        input#location(type='text' name='location' placeholder='Enter Location')
-        label(for='price[gte]')
-        input#pricegreat(type='text' name='price[gte]' placeholder='Price Starting from')
-        label(for='price[lte]')
-        input#priceless(type='text' name='price[lte]' placeholder='Price Ending ')
-        label(for='rooms')
-        input#room(type='text' name='rooms' placeholder='Room Required')
-        label(for='startdate')
-        input#room(type='date' name='startdate' placeholder='Start Date')
-        label(for='enddate')
-        input#room(type='date' name='enddate' placeholder='End Date')
-        button.btn.btn-primary(type='submit') Search
+    .searchbar_form
+        form(action='/overview' method='GET')
+            .searchbar_top
+                .searchbar_top_input
+                    label(for='name') Search By Hotel name 
+                    input#name(type='text' name='name' placeholder='Search By Hotel name')
+                .searchbar_top_input
+                    label(for='location') Search By Location
+                    input#location(type='text' name='location' placeholder='Enter Location')
+                .searchbar_top_input
+                    label(for='price[gte]') Price Starting
+                    input#pricegreat(type='text' name='price[gte]' placeholder='Price Starting from')
+                .searchbar_top_input
+                    label(for='price[lte]') Price Ending
+                    input#priceless(type='text' name='price[lte]' placeholder='Price Ending ')
+                .searchbar_top_input
+                    label(for='rooms') Room Required
+                    input#room(type='text' name='rooms' placeholder='Room Required')
+                .searchbar_top_input
+                    label(for='startdate') Start Date
+                    input#room(type='date' name='startdate' placeholder='Start Date')
+                .searchbar_top_input
+                    label(for='enddate') End Date
+                    input#room(type='date' name='enddate' placeholder='End Date')
+            .searchbar_button
+                .button
+                    button(type='submit') Search
     .overview_main
         .overview_mainleft
             .overview_staysplace
@@ -48,7 +59,7 @@ block content
                                         span= hotel.ratingsQuantity
                                         span )
                                 .overview_cardrightsecond
-                                    h3= hotel.description
+                                    h3= hotel.summary
                                     span Air Conditioning , Kitchen , Wifi
                                 .overview_cardrightthird
                                     span 

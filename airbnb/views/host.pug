@@ -3,34 +3,37 @@ extends base
 block content
     main.main
         .host-form
-            h2.heading-secondary.ma-bt-lg We need Details
+            h2 LET'S WORK TOGETHER
+            h2.heading-secondary.ma-bt-lg We need Details 
+            
             form.hostform
-                .form__group
-                    label.form__label(for='name') name address
+                .form__group.hosting
+                    label.form__label(for='name') HOTEL NAME
                     input#name.form__input(type='name', placeholder='Enter your hotel or host name', required)
-                .form__group
-                    label.form__label(for='location') location
+                .form__group.hosting
+                    label.form__label(for='location') LOCATION OF YOUR HOTEL
                     input#location.form__input(type='location', placeholder='location', required)
-                .form__group
-                    label.form__label(for='description') description
+                .form__group.hosting
+                    label.form__label(for='description') DESCRIPTON OF YOUR HOTEL
                     input#description.form__input(type='description', placeholder='Provide Description', required)
-                .form__group
-                    label.form__label(for='summary') summary
+                .form__group.hosting
+                    label.form__label(for='summary') SUMMARY OF YOUR HOTEL
                     input#summary.form__input(type='summary', placeholder='summary', required)
-                .form__group
-                    label.form__label(for='rooms') rooms
+                .form__group.hosting
+                    label.form__label(for='rooms') ROOMS HOSTING
                     input#rooms.form__input(type='rooms', placeholder='rooms', required)
-                .form__group
-                    label.form__label(for='price') price
-                    input#price.form__input(type='price', placeholder='price', required)
-                .form__group
+                .form__group.hosting
+                    label.form__label(for='price') PRICE
+                    input#price.form__input(type='price', placeholder='price in INR', required)
+                .form__group.hosting
                         label(for='hotel_type') Choose Hotel Type:
-                        select#hotel_type(name='hotel_type' form='hotel_types')
+                        select#hotel_type(name='hotel_type' )
                             option(value='Private Room') Private Room
                             option(value='Apartment Room') Apartment Room
                             option(value='Entire House') Entire House
                             option(value='Entire Flat') Entire Flat
                             option(value='Entire Apartment') Entire Apartment
+                h3.amenitiesheader PLEASE MARK AMENITIES PROVIDED BY YOU
                 input(type='checkbox' name='utility[wifi]' value='wifi' checked)
                 |  WI-FI
                 br
@@ -51,5 +54,18 @@ block content
                 br
                 input(type='checkbox' name='utility[tag]' value='tag' checked)
                 |  tag
-                .form__group
-                    button.btn.btn--green Host 
+                h3.mapheader DETAILS NEEDED TO DISPLAY IN MAP
+                .form__group.hosting
+                    label.form__label(for='longitude') LONGITUDE OF YOUR HOST HOME
+                    input#longitude.form__input(type='longitude', placeholder='Enter longitude of your hotel', required)
+                .form__group.hosting
+                    label.form__label(for='latitude') LATITUDE OF YOUR HOST HOME
+                    input#latitude.form__input(type='latitude', placeholder='Enter latitude of your hotel', required)
+                .form__group.hosting
+                    label.form__label(for='descript') ENTER DESCRIPTION OF YOUR HOTEL LOCATION WHICH DISPLAY ON MAP
+                    input#descript.form__input(type='descript', placeholder=' description', required)
+                .form__group.hosting
+                    label.form__label(for='add') ENTER ADDRESS OF YOUR HOTEL LOCATION WHICH DISPLAY ON MAP
+                    input#add.form__input(type='add', placeholder=' address ', required)
+                .form__group.hosting
+                    button.btn.btn--green Host  

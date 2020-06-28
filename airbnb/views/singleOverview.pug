@@ -22,7 +22,7 @@ html
         
     .singleOverview
         .singleOverview_topdetails
-            h2= data.description
+            h2= data.summary
             span    
                 - const desc = `❤️ ${data.ratingsAverage}(${data.ratingsQuantity})  ${data.location} `
                 span= desc
@@ -45,7 +45,7 @@ html
                         img(src=`/img/users/${data.host[0].photo}`, alt="")
                 .singleOverview_details_second
                     h4 About your stay in hotel
-                    p= data.summary
+                    p= data.description
                 .singleOverview_details_bed
                     h4 Sleeping Arrangements
                     .singleOverview_details_bed_card
@@ -129,13 +129,16 @@ html
                                 .form__grouppayment1
                                     .form__grouppayment1a.form-rightborder
                                         label(for='checkin') CHECK-IN
-                                        input#checkin.form__input(type='date', placeholder='Add date')
+                                        input.form__input(type='date', id='checkin',max='',placeholder='Add date')
                                     .form__grouppayment1a
                                         label(for='checkout') CHECK-OUT
-                                        input#checkin.form__input(type='date', placeholder='Add date')
+                                        input.form__input(type='date', id='checkout',min='',placeholder='Add date')
                                 .form__grouppayment1b
                                     label(for='guests') Guests
-                                    input#password.form__input(type='number', placeholder='guest')
+                                    input#guest.form__input(type='number', placeholder='guest')
+                                p.total_payment_section
+                                    p.total_payment= data.price
+                                    p.total_paymentb INR
                                 .form__grouppayment.form-payment_button
                                     if user
                                         button#book-tour(data-hotel-id = data._id) Check availability
@@ -152,4 +155,4 @@ html
         script(src='/js/mapbox.js')
         script(src='/js/logout.js')
         script(src='/js/stripe.js')
-
+        script(src='/js/date2.js')

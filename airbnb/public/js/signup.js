@@ -33,5 +33,6 @@ document.querySelector('.signform').addEventListener('submit', (e) => {
 	const password = document.getElementById('password').value;
 	const username = document.getElementById('username').value;
 	const confirmPassword = document.getElementById('confirmPassword').value;
+	console.log(email, password, username, confirmPassword);
 	signup(email, password, username, confirmPassword);
 });

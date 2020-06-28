@@ -1,4 +1,16 @@
-const host = async (name, location, summary, description, rooms, price) => {
+const host = async (
+	name,
+	location,
+	summary,
+	description,
+	rooms,
+	price,
+	hotel_type,
+	longitude,
+	latitude,
+	descript,
+	add
+) => {
 	try {
 		// console.log('hi');
 		const res = await axios({
@@ -10,7 +22,12 @@ const host = async (name, location, summary, description, rooms, price) => {
 				summary,
 				description,
 				rooms,
-				price
+				price,
+				hotel_type,
+				longitude,
+				latitude,
+				descript,
+				add
 			}
 		});
 		// console.log(res);
@@ -38,5 +55,10 @@ document.querySelector('.hostform').addEventListener('submit', (e) => {
 	const description = document.getElementById('description').value;
 	const rooms = document.getElementById('rooms').value;
 	const price = document.getElementById('price').value;
-	host(name, location, summary, description, rooms, price);
+	const hotel_type = document.getElementById('hotel_type').value;
+	const longitude = document.getElementById('longitude').value;
+	const latitude = document.getElementById('latitude').value;
+	const descript = document.getElementById('descript').value;
+	const add = document.getElementById('add').value;
+	host(name, location, summary, description, rooms, price, hotel_type, longitude, latitude, descript, add);
 });

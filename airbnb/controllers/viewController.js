@@ -27,6 +27,7 @@ exports.signup = (req, res) => {
 };
 
 exports.overview = async (req, res) => {
+	// 1) Get hotel data from collection and also applying varous filters
 	// console.log(req.query);
 
 	const queryObj = { ...req.query };
@@ -106,6 +107,7 @@ exports.overview = async (req, res) => {
 };
 
 exports.getHotel = catchAsync(async (req, res) => {
+	// 1) Get the data, for the requested hotel (including reviews and guides)
 	// console.log(req.params)
 	const oneHotel = await Hotel.findById(req.params.id).populate('reviews');
 	// const oneHotel = await Hotel.findOne({name: req.params.name})
@@ -149,13 +151,10 @@ exports.getPersonal = async (req, res) => {
 };
 
 exports.getMyHotel = catchAsync(async (req, res, next) => {
-	// Find all the bookings
-	// console.log('Hi from get booked hotel controller');
-	const bookings = await Booking.find({ user: req.user._id });
-	// console.log(bookings);
-	// Find hotel with thereturned IDs
-	const hotelIDs = bookings.map((el) => el.hotel);
-	const hotels = await Hotel.find({ _id: { $in: hotelIDs } });
+	// 1.Find all the bookings
+	// console.log('Hi from getting user booked hotel controller and displaying bokings');
+	const hotels = await Booking.find({ user: req.user._id }).populate('bookings');
+	// console.log(hotels);
 
 	res.status(200).render('bookedHotels', {
 		title: 'My Hotels',

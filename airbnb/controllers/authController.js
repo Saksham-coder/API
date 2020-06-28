@@ -16,6 +16,7 @@ exports.signup = catchAsync(async (req, res) => {
 
 	id = newUser._id;
 
+	// Sending  Token as Cookie
 	const token = jwt.sign({ id }, 'abcdefebgudjnwksjcscjscsdjkcnjdc');
 	const cookieOptions = {
 		expires: new Date(Date.now() + 1000 * 24 * 60 * 60 * 1000),
@@ -36,7 +37,11 @@ exports.login = catchAsync(async (req, res) => {
 	const password = req.body.password;
 	// console.log(req.body)
 	// console.log(username, password)
+
+	// 1) Check if email and password exist
 	if (!email || !password) throw new err('Please provide username or password', 404);
+
+	// 2) Check if user exists && password is correct
 	const singleUser = await user.findOne({ email: email });
 	// console.log(singleUser)
 	const correct = await bcrypt.compare(password, singleUser.password);
@@ -44,6 +49,8 @@ exports.login = catchAsync(async (req, res) => {
 	if (!singleUser || !correct) throw new err('Please provide valid username or password', 404);
 
 	id = singleUser._id;
+
+	// 3) If everything ok, send token to client
 	const token = jwt.sign({ id }, 'abcdefebgudjnwksjcscjscsdjkcnjdc');
 	// console.log(token);
 	const cookieOptions = {
@@ -94,6 +101,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 	next();
 });
 
+// Only for rendered pages, no errors!
 exports.isLoggedIn = async (req, res, next) => {
 	try {
 		if (req.cookies.jwt) {
